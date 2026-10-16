@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuvraj Gupta | Finance &amp; Data Analytics Portfolio</title>
+  <meta name="description" content="Portfolio of Yuvraj Gupta, a BBA Finance student building skills in financial analysis and data analytics." />
+  <meta name="theme-color" content="#0a1628" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a1628'/%3E%3Ctext x='32' y='42' font-size='28' text-anchor='middle' fill='%232dd4bf' font-family='Arial' font-weight='700'%3EYG%3C/text%3E%3C/svg%3E" />
+
+  <!--
+  ============================================================
+  QUICK GUIDE: WHAT TO REPLACE (search for "REPLACE" in this file)
+  1. LINKS object (in the <script> at the bottom): GitHub, project and resume links
+  2. Education section: college name and years (placeholders)
+  3. Project section: sample figures live in the DATA object in the script
+  4. Resume: put your PDF next to index.html and name it as set in RESUME_FILE
+  ============================================================
+  -->
+
+  <style>
+    /* ---------- Design tokens ---------- */
+    :root {
+      --navy-900: #060e1c;
+      --navy-800: #0a1628;
+      --navy-700: #0f1f3a;
+      --navy-600: #162a4a;
+      --line: rgba(148, 197, 220, 0.14);
+      --teal: #2dd4bf;
+      --teal-dark: #14b8a6;
+      --sky: #38bdf8;
+      --violet: #a78bfa;
+      --text: #e6eef7;
+      --muted: #9fb2c8;
+      --radius: 16px;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --maxw: 1120px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--navy-800);
+      background-image:
+        radial-gradient(900px 500px at 85% -10%, rgba(45, 212, 191, 0.10), transparent 60%),
+        radial-gradient(700px 500px at -10% 30%, rgba(56, 189, 248, 0.07), transparent 60%);
+      background-attachment: fixed;
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img, svg { max-width: 100%; display: block; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul { list-style: none; }
+    section { scroll-margin-top: 80px; padding: 88px 0; }
+    .container { width: min(var(--maxw), 100% - 40px); margin-inline: auto; }
+
+    .eyebrow {
+      display: inline-block; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--teal); font-weight: 700; margin-bottom: 10px;
+    }
+    h1, h2, h3, h4 { line-height: 1.2; letter-spacing: -0.01em; }
+    h2.title { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 12px; }
+    .lead { color: var(--muted); max-width: 640px; margin-bottom: 40px; }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font: inherit; font-weight: 600; font-size: .95rem; cursor: pointer;
+      padding: 12px 22px; border-radius: 999px; border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+      text-decoration: none !important;
+    }
+    .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--teal); outline-offset: 3px;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--teal), var(--teal-dark)); color: #04201c; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(45, 212, 191, 0.3); }
+    .btn-ghost { background: rgba(255, 255, 255, 0.03); color: var(--text); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+    .btn-sm { padding: 9px 16px; font-size: .85rem; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ---------- Header / nav ---------- */
+    header.site {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+    }
+    header.site.scrolled {
+      background: rgba(8, 18, 36, 0.82); backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); text-decoration: none !important; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--sky)); color: #04201c; font-size: .9rem; font-weight: 800;
+    }
+    .nav-links { display: flex; gap: 4px; }
+    .nav-links a {
+      color: var(--muted); font-size: .92rem; font-weight: 500; padding: 8px 14px; border-radius: 999px;
+      text-decoration: none; transition: color .2s, background .2s;
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+    .nav-links a.active { color: var(--teal); background: rgba(45, 212, 191, 0.10); }
+    .menu-btn {
+      display: none; background: transparent; border: 1px solid var(--line); color: var(--text);
+      width: 42px; height: 42px; border-radius: 10px; cursor: pointer; font-size: 1.2rem;
+    }
+
+    /* ---------- Hero ---------- */
+    #home { padding: 150px 0 90px; min-height: 100vh; display: flex; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px;
+      background: rgba(45, 212, 191, 0.10); border: 1px solid rgba(45, 212, 191, 0.25);
+      color: var(--teal); font-size: .82rem; font-weight: 600; margin-bottom: 22px;
+    }
+    .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(45,212,191,.6);} 70% { box-shadow: 0 0 0 10px rgba(45,212,191,0);} 100% { box-shadow: 0 0 0 0 rgba(45,212,191,0);} }
+    h1.hero-title { font-size: clamp(2.3rem, 6vw, 3.8rem); margin-bottom: 18px; }
+    h1.hero-title span { background: linear-gradient(120deg, var(--teal), var(--sky)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero-sub { color: var(--muted); font-size: 1.1rem; max-width: 560px; margin-bottom: 30px; }
+
+    .glass {
+      background: linear-gradient(180deg, rgba(22, 42, 74, 0.72), rgba(15, 31, 58, 0.72));
+      border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+    }
+    .snapshot { padding: 24px; position: relative; animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform: translateY(0);} 50% { transform: translateY(-8px);} }
+    .snap-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 10px; }
+    .snap-head h3 { font-size: 1rem; }
+    .tag {
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px; background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); white-space: nowrap;
+    }
+    .snap-kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .snap-kpi { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line); border-radius: 12px; padding: 12px; }
+    .snap-kpi small { color: var(--muted); font-size: .72rem; display: block; }
+    .snap-kpi strong { font-size: 1.05rem; color: var(--teal); }
+    .spark { width: 100%; height: 90px; }
+    .snap-note { color: var(--muted); font-size: .75rem; margin-top: 8px; }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: start; }
+    .about-text p { color: var(--muted); margin-bottom: 16px; }
+    .about-text p strong { color: var(--text); }
+    .facts { display: grid; gap: 14px; }
+    .fact { padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start; }
+    .fact .ico {
+      flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center;
+      background: rgba(45, 212, 191, 0.12); color: var(--teal); font-size: 1.1rem;
+    }
+    .fact h4 { font-size: .95rem; margin-bottom: 2px; }
+    .fact p { color: var(--muted); font-size: .88rem; margin: 0; }
+
+    /* ---------- Cards / grids ---------- */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .card { padding: 26px; transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-6px); border-color: rgba(45, 212, 191, 0.45); box-shadow: 0 22px 44px rgba(0,0,0,.4); }
+    .card .ico {
+      width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 16px;
+      background: rgba(45, 212, 191, 0.12); color: var(--teal); font-size: 1.3rem;
+    }
+    .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .card p { color: var(--muted); font-size: .9rem; }
+
+    /* Skill level pips (qualitative, not percentages) */
+    .level { margin-top: 18px; display: flex; align-items: center; gap: 10px; font-size: .78rem; color: var(--muted); }
+    .pips { display: flex; gap: 5px; }
+    .pips i { width: 22px; height: 6px; border-radius: 4px; background: rgba(255, 255, 255, 0.10); display: block; }
+    .pips i.on { background: linear-gradient(90deg, var(--teal), var(--sky)); }
+    .note { margin-top: 24px; color: var(--muted); font-size: .88rem; }
+
+    /* ---------- Project ---------- */
+    .project { padding: 34px; }
+    .project-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+    .project h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 6px; }
+    .project .sub { color: var(--muted); }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 22px; }
+    .badge {
+      font-size: .76rem; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.10); color: var(--sky); border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .proj-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 30px; }
+    .proj-cols h4 { font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
+    .proj-cols p, .proj-cols li { color: var(--muted); font-size: .94rem; }
+    .proj-cols li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+    .proj-cols li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 2px; background: var(--teal); }
+
+    .illus-banner {
+      display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;
+      background: rgba(251, 191, 36, 0.07); border: 1px solid rgba(251, 191, 36, 0.28); color: #f5d77a; font-size: .86rem;
+    }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 26px; }
+    .kpi { padding: 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--line); }
+    .kpi small { color: var(--muted); font-size: .78rem; display: block; margin-bottom: 4px; }
+    .kpi strong { font-size: 1.5rem; color: var(--text); display: block; }
+    .kpi em { font-style: normal; font-size: .72rem; color: var(--teal); }
+
+    .charts { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+    .chart-card { padding: 20px; background: rgba(6, 14, 28, 0.45); border: 1px solid var(--line); border-radius: 14px; }
+    .chart-card.wide { grid-column: 1 / -1; }
+    .chart-card h5 { font-size: .95rem; margin-bottom: 2px; }
+    .chart-card .cap { color: var(--muted); font-size: .78rem; margin-bottom: 12px; }
+    .chart svg { width: 100%; height: auto; overflow: visible; }
+    .chart text { fill: var(--muted); font-size: 11px; font-family: inherit; }
+    .chart .grid { stroke: rgba(148, 197, 220, 0.12); stroke-width: 1; }
+    .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: .78rem; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+    .bar { transform-box: fill-box; transform-origin: bottom; transform: scaleY(0); }
+    .chart.in .bar { animation: grow .9s cubic-bezier(.2,.8,.2,1) forwards; }
+    @keyframes grow { to { transform: scaleY(1); } }
+    .line-path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .chart.in .line-path { animation: draw 1.4s ease forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .dot-pt { opacity: 0; }
+    .chart.in .dot-pt { animation: fade .5s ease 1.1s forwards; }
+    @keyframes fade { to { opacity: 1; } }
+    .donut-wrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .donut-wrap svg { width: 170px; height: 170px; flex: none; }
+    .donut-legend { display: grid; gap: 8px; font-size: .84rem; color: var(--muted); }
+    .donut-legend span { display: flex; align-items: center; gap: 8px; }
+    .donut-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+    .donut-legend b { color: var(--text); margin-left: auto; padding-left: 14px; }
+
+    /* ---------- Education ---------- */
+    .timeline { position: relative; padding-left: 30px; max-width: 760px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--teal), transparent); }
+    .tl-item { position: relative; padding: 24px 26px; }
+    .tl-item::before {
+      content: ""; position: absolute; left: -30px; top: 30px; width: 16px; height: 16px; border-radius: 50%;
+      background: var(--navy-800); border: 3px solid var(--teal);
+    }
+    .tl-item h3 { font-size: 1.15rem; margin-bottom: 4px; }
+    .tl-item .meta { color: var(--teal); font-size: .86rem; font-weight: 600; margin-bottom: 8px; }
+    .tl-item p { color: var(--muted); font-size: .92rem; }
+    .placeholder { border-bottom: 1px dashed rgba(251, 191, 36, 0.6); color: #f5d77a; }
+
+    /* ---------- Resume ---------- */
+    .resume-box { padding: 36px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items: center; }
+    .resume-box p { color: var(--muted); margin-bottom: 22px; }
+    .resume-list li { padding: 10px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .92rem; display: flex; gap: 10px; }
+    .resume-list li:last-child { border-bottom: 0; }
+    .resume-list li span { color: var(--teal); }
+
+    /* ---------- Contact ---------- */
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; align-items: start; }
+    .contact-cards { display: grid; gap: 14px; }
+    .c-card { padding: 18px 20px; display: flex; gap: 14px; align-items: center; }
+    .c-card .ico { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(45, 212, 191, 0.12); font-size: 1.1rem; }
+    .c-card small { color: var(--muted); display: block; font-size: .78rem; }
+    .c-card a, .c-card span.val { color: var(--text); font-weight: 600; word-break: break-all; font-size: .95rem; }
+    form.contact { padding: 28px; display: grid; gap: 16px; }
+    .field { display: grid; gap: 6px; }
+    .field label { font-size: .84rem; font-weight: 600; color: var(--muted); }
+    .field input, .field textarea {
+      font: inherit; color: var(--text); background: rgba(6, 14, 28, 0.55); border: 1px solid var(--line);
+      border-radius: 12px; padding: 12px 14px; width: 100%; transition: border-color .2s, box-shadow .2s;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.15); outline: none; }
+    .field textarea { min-height: 130px; resize: vertical; }
+    .hidden { position: absolute; left: -9999px; }
+    .form-status { font-size: .88rem; min-height: 1.2em; color: var(--muted); }
+
+    /* ---------- Footer ---------- */
+    footer.site { border-top: 1px solid var(--line); background: rgba(6, 14, 28, 0.6); padding: 44px 0 28px; }
+    .foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 28px; margin-bottom: 28px; }
+    .foot-grid p { color: var(--muted); font-size: .88rem; max-width: 360px; margin-top: 10px; }
+    .foot-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .foot-links a { color: var(--muted); font-size: .9rem; }
+    .foot-links a:hover { color: var(--teal); }
+    .foot-bottom { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; color: var(--muted); font-size: .8rem; }
+
+    /* ---------- Toast ---------- */
+    .toast {
+      position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 30px); opacity: 0; pointer-events: none;
+      background: var(--navy-600); color: var(--text); border: 1px solid var(--teal); border-radius: 12px;
+      padding: 12px 18px; font-size: .9rem; z-index: 200; max-width: min(92vw, 460px); text-align: center;
+      transition: opacity .3s ease, transform .3s ease; box-shadow: var(--shadow);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1000px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .kpis { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid, .about-grid, .contact-grid, .resume-box { grid-template-columns: 1fr; }
+      .charts { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .menu-btn { display: grid; place-items: center; }
+      .nav-links {
+        position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; gap: 2px; padding: 12px 20px 18px;
+        background: rgba(8, 18, 36, 0.97); border-bottom: 1px solid var(--line);
+        transform: translateY(-12px); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
+      }
+      .nav-links.open { opacity: 1; transform: none; pointer-events: auto; }
+      .nav-links a { padding: 12px 14px; }
+      header.site.menu-open { background: rgba(8, 18, 36, 0.97); }
+    }
+    @media (max-width: 640px) {
+      section { padding: 64px 0; }
+      #home { padding-top: 120px; min-height: auto; }
+      .grid-4, .proj-cols { grid-template-columns: 1fr; }
+      .project, .resume-box, form.contact { padding: 22px; }
+      .snap-kpis { grid-template-columns: 1fr 1fr 1fr; }
+      .kpi strong { font-size: 1.25rem; }
+      .btn-row .btn { flex: 1 1 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .bar { transform: none; }
+      .line-path { stroke-dashoffset: 0; }
+      .dot-pt { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ======================= HEADER / NAVIGATION ======================= -->
+  <header class="site" id="siteHeader">
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Yuvraj Gupta, home">
+        <span class="brand-mark">YG</span>
+        <span>Yuvraj Gupta</span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================= HOME ======================= -->
+    <section id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="pill"><span class="dot"></span> BBA Finance student &middot; Open to learning opportunities</span>
+          <h1 class="hero-title">Hi, I'm <span>Yuvraj Gupta</span></h1>
+          <p class="hero-sub">
+            A BBA student specialising in Finance, building practical skills in financial analysis,
+            data interpretation and business reporting, with an eye on a future in Finance and Data Analytics.
+          </p>
+          <div class="btn-row">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <button class="btn btn-ghost" type="button" data-action="resume">&#8681; Download Resume</button>
+            <button class="btn btn-ghost" type="button" data-link="github">GitHub</button>
+          </div>
+        </div>
+
+        <!-- Hero snapshot card: values are filled from the DATA object and are ILLUSTRATIVE -->
+        <aside class="glass snapshot reveal" aria-label="Illustrative project snapshot">
+          <div class="snap-head">
+            <h3>Nova Retail Solution</h3>
+            <span class="tag">Illustrative data</span>
+          </div>
+          <div class="snap-kpis">
+            <div class="snap-kpi"><small>Revenue (4 mo)</small><strong id="snapRev">-</strong></div>
+            <div class="snap-kpi"><small>Gross margin</small><strong id="snapGm">-</strong></div>
+            <div class="snap-kpi"><small>Op. margin (Apr)</small><strong id="snapOm">-</strong></div>
+          </div>
+          <svg class="spark" id="spark" viewBox="0 0 300 90" preserveAspectRatio="none" role="img" aria-label="Sample monthly revenue trend, January to April 2026"></svg>
+          <p class="snap-note">Fictional retail dataset, Jan&ndash;Apr 2026. Sample figures for demonstration.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================= ABOUT ======================= -->
+    <section id="about">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">About Me</span>
+          <h2 class="title">Learning to turn numbers into business insight</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <!-- REPLACE: Edit these paragraphs so they sound like you. Add only facts that are true. -->
+            <p>I'm <strong>Yuvraj Gupta</strong>, a BBA student with a <strong>Finance specialization</strong>. I'm interested in how financial data explains the way a business is performing, and in how clear reporting helps people make better decisions.</p>
+            <p>I learn best by working on projects. My main project so far, <strong>Nova Retail Solution</strong>, is a financial performance analysis built on a fictional retail dataset. It lets me practise organising data, calculating key ratios and presenting findings clearly.</p>
+            <p>I'm still developing my skills in Excel, financial analysis, data interpretation and business reporting, and I'm keen to keep learning and apply them in real finance and data analytics settings.</p>
+          </div>
+          <div class="facts">
+            <div class="glass fact reveal"><div class="ico">&#127891;</div><div><h4>Education</h4><p>BBA, Finance specialization</p></div></div>
+            <div class="glass fact reveal"><div class="ico">&#127919;</div><div><h4>Career interest</h4><p>Finance &amp; Data Analytics</p></div></div>
+            <div class="glass fact reveal"><div class="ico">&#128205;</div><div><h4>Based in</h4><p>Kanpur, India</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= SKILLS ======================= -->
+    <section id="skills">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Skills</span>
+          <h2 class="title">What I'm building</h2>
+          <p class="lead">These are skills I'm actively developing through coursework and hands-on practice.</p>
+        </div>
+        <!-- REPLACE: Add or remove skill cards as your skills grow. Pips show a qualitative level (out of 5), not a percentage. -->
+        <div class="grid-4">
+          <article class="glass card reveal">
+            <div class="ico">&#128202;</div>
+            <h3>Microsoft Excel</h3>
+            <p>Organising datasets, building formulas and summary tables, and preparing clean sheets for analysis.</p>
+            <div class="level"><div class="pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>Developing</div>
+          </article>
+          <article class="glass card reveal">
+            <div class="ico">&#128176;</div>
+            <h3>Financial Analysis</h3>
+            <p>Reviewing revenue, costs and margins to understand profitability and month-to-month performance.</p>
+            <div class="level"><div class="pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>Developing</div>
+          </article>
+          <article class="glass card reveal">
+            <div class="ico">&#128161;</div>
+            <h3>Data Interpretation</h3>
+            <p>Reading trends and patterns in data and connecting them to sensible business explanations.</p>
+            <div class="level"><div class="pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>Developing</div>
+          </article>
+          <article class="glass card reveal">
+            <div class="ico">&#128221;</div>
+            <h3>Business Reporting</h3>
+            <p>Summarising findings in clear, structured reports that a non-technical reader can follow.</p>
+            <div class="level"><div class="pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>Developing</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= PROJECTS ======================= -->
+    <section id="projects">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Projects</span>
+          <h2 class="title">Featured project</h2>
+          <p class="lead">A hands-on financial analysis built to practise the skills above.</p>
+        </div>
+
+        <article class="glass project reveal">
+          <div class="project-top">
+            <div>
+              <h3>NOVA RETAIL SOLUTION</h3>
+              <p class="sub">Financial Performance Analysis &middot; January&ndash;April 2026</p>
+            </div>
+            <div class="btn-row">
+              <!-- REPLACE: set LINKS.projectDemo and LINKS.projectGithub in the script at the bottom -->
+              <button class="btn btn-primary btn-sm" type="button" data-link="projectDemo">View Project</button>
+              <button class="btn btn-ghost btn-sm" type="button" data-link="projectGithub">Project on GitHub</button>
+            </div>
+          </div>
+
+          <div class="badges">
+            <span class="badge">Fictional retail dataset</span>
+            <span class="badge">Jan&ndash;Apr 2026</span>
+            <span class="badge">Excel</span>
+            <span class="badge">Financial analysis</span>
+            <span class="badge">Business reporting</span>
+          </div>
+
+          <!-- REPLACE: Edit the overview, objectives and approach so they match what you actually did in the project. -->
+          <div class="proj-cols">
+            <div>
+              <h4>Overview</h4>
+              <p>An analysis of the financial performance of a fictional retail business, Nova Retail Solution, using a made-up dataset covering January to April 2026. The goal was to study revenue, costs and profitability month by month and summarise the findings in a clear business report.</p>
+            </div>
+            <div>
+              <h4>Approach</h4>
+              <ul>
+                <li>Organised monthly sales, cost and expense data in Excel</li>
+                <li>Calculated gross profit, operating profit and margins</li>
+                <li>Compared month-over-month trends</li>
+                <li>Summarised the findings in a business report</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="illus-banner" role="note">
+            <span aria-hidden="true">&#9888;</span>
+            <span><strong>Illustrative figures.</strong> The numbers and charts below are sample values for a fictional dataset, shown to demonstrate how results would be presented. Replace them with your real project results (see the <code>DATA</code> object in the script).</span>
+          </div>
+
+          <div class="kpis" id="kpis" aria-label="Illustrative project metrics"></div>
+
+          <div class="charts">
+            <div class="chart-card">
+              <h5>Revenue, gross profit and operating profit</h5>
+              <p class="cap">Monthly, in &#8377; lakh &middot; Illustrative sample data</p>
+              <div class="chart" id="barChart"></div>
+            </div>
+            <div class="chart-card">
+              <h5>Sales mix by category</h5>
+              <p class="cap">Share of revenue &middot; Illustrative sample data</p>
+              <div class="chart" id="donutChart"></div>
+            </div>
+            <div class="chart-card wide">
+              <h5>Margin trend</h5>
+              <p class="cap">Gross and operating margin, % of revenue &middot; Illustrative sample data</p>
+              <div class="chart" id="lineChart"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================= EDUCATION ======================= -->
+    <section id="education">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Education</span>
+          <h2 class="title">Academic background</h2>
+        </div>
+        <div class="timeline">
+          <div class="glass tl-item reveal">
+            <h3>Bachelor of Business Administration (BBA)</h3>
+            <!-- REPLACE: add your real college/university name and years. Remove the highlighted placeholder style once done. -->
+            <div class="meta">Specialization: Finance</div>
+            <p>Institution: <span class="placeholder">[Add your college / university name]</span></p>
+            <p>Duration: <span class="placeholder">[Add start year &ndash; expected graduation year]</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= RESUME ======================= -->
+    <section id="resume">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Resume</span>
+          <h2 class="title">My resume</h2>
+        </div>
+        <div class="glass resume-box reveal">
+          <div>
+            <p>Download my latest resume for a concise overview of my education, project work and skills.</p>
+            <div class="btn-row">
+              <button class="btn btn-primary" type="button" data-action="resume">&#8681; Download Resume</button>
+              <button class="btn btn-ghost" type="button" data-link="linkedin">LinkedIn Profile</button>
+            </div>
+          </div>
+          <ul class="resume-list">
+            <li><span>&#10003;</span> BBA, Finance specialization</li>
+            <li><span>&#10003;</span> Nova Retail Solution: financial performance analysis</li>
+            <li><span>&#10003;</span> Excel, financial analysis, data interpretation, reporting</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= CONTACT ======================= -->
+    <section id="contact">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Contact</span>
+          <h2 class="title">Let's connect</h2>
+          <p class="lead">Interested in my work or want to talk about finance and analytics? Send me a message.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-cards">
+            <div class="glass c-card reveal">
+              <div class="ico">&#9993;</div>
+              <div><small>Email</small><a href="mailto:Yuvrajgupta372@gmail.com" id="emailLink">Yuvrajgupta372@gmail.com</a></div>
+            </div>
+            <div class="glass c-card reveal">
+              <div class="ico">&#128279;</div>
+              <div><small>LinkedIn</small><a href="https://l1nk.dev/ats8c2f" target="_blank" rel="noopener noreferrer">View my LinkedIn profile</a></div>
+            </div>
+            <div class="glass c-card reveal">
+              <div class="ico">&#128205;</div>
+              <div><small>Location</small><span class="val">Kanpur, India</span></div>
+            </div>
+          </div>
+
+          <!--
+            Netlify Forms: after deploying to Netlify, submissions appear in your Netlify dashboard under Forms.
+            Do not remove name="contact", data-netlify="true" or the hidden form-name input.
+            If the form cannot send (for example when opening the file locally), it falls back to opening your email app.
+          -->
+          <form class="glass contact reveal" id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+            <div class="field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email">Your email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" id="sendBtn">Send Message</button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ======================= FOOTER ======================= -->
+  <footer class="site">
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a href="#home" class="brand"><span class="brand-mark">YG</span><span>Yuvraj Gupta</span></a>
+          <p>BBA Finance student building skills in financial analysis and data analytics.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; <span id="year">2026</span> Yuvraj Gupta. All rights reserved.</span>
+        <span>Project data shown is fictional and illustrative.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* =====================================================================
+       REPLACE: LINKS
+       Paste your real URLs between the quotes. Empty ("") links show a polite
+       "coming soon" message instead of a broken link.
+       ===================================================================== */
+    const LINKS = {
+      github:        "",  // e.g. "https://github.com/your-username"
+      projectDemo:   "",  // e.g. a link to your Nova Retail report, Excel file or PDF
+      projectGithub: "",  // e.g. "https://github.com/your-username/nova-retail-solution"
+      linkedin:      "https://l1nk.dev/ats8c2f"
+    };
+
+    /* REPLACE: Put your resume PDF in the same folder as index.html and make sure the name matches. */
+    const RESUME_FILE = "Yuvraj_Gupta_Resume.pdf";
+
+    /* =====================================================================
+       REPLACE: DATA
+       ILLUSTRATIVE sample figures for the fictional Nova Retail Solution
+       dataset (Jan-Apr 2026), in INR lakh. Replace them with your real
+       project results. All KPIs and charts update automatically.
+       ===================================================================== */
+    const DATA = {
+      months:  ["Jan", "Feb", "Mar", "Apr"],
+      revenue: [48, 52, 57, 61],       // total sales
+      cogs:    [31, 33, 36, 38],       // cost of goods sold
+      opex:    [9, 9.5, 10, 10.5],     // operating expenses
+      categories: [                    // share of revenue (should total 100)
+        { name: "Apparel",     pct: 38 },
+        { name: "Electronics", pct: 27 },
+        { name: "Home",        pct: 20 },
+        { name: "Grocery",     pct: 15 }
+      ]
+    };
+
+    /* ---------- Derived figures ---------- */
+    const sum = a => a.reduce((x, y) => x + y, 0);
+    const gp  = DATA.revenue.map((r, i) => r - DATA.cogs[i]);
+    const op  = gp.map((g, i) => g - DATA.opex[i]);
+    const gm  = gp.map((g, i) => g / DATA.revenue[i] * 100);
+    const om  = op.map((o, i) => o / DATA.revenue[i] * 100);
+    const totalRev = sum(DATA.revenue);
+    const totalGp  = sum(gp);
+    const lastIdx  = DATA.revenue.length - 1;
+    const growth   = (DATA.revenue[lastIdx] - DATA.revenue[0]) / DATA.revenue[0] * 100;
+    const avgGm    = totalGp / totalRev * 100;
+    const inr = n => "\u20B9" + (Math.round(n * 10) / 10).toLocaleString("en-IN") + " L";
+    const pct = n => n.toFixed(1) + "%";
+    const rangeLabel = DATA.months[0] + "\u2013" + DATA.months[lastIdx];
+
+    /* ---------- Small helpers ---------- */
+    const $ = (s, c = document) => c.querySelector(s);
+    const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+
+    let toastTimer;
+    function toast(msg) {
+      const t = $("#toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove("show"), 3800);
+    }
+
+    /* ---------- Header: scroll style + mobile menu ---------- */
+    const header = $("#siteHeader");
+    const navLinks = $("#navLinks");
+    const menuBtn = $("#menuBtn");
+    function onScroll() { header.classList.toggle("scrolled", window.scrollY > 20); }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    function setMenu(open) {
+      navLinks.classList.toggle("open", open);
+      header.classList.toggle("menu-open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      menuBtn.innerHTML = open ? "&#10005;" : "&#9776;";
+    }
+    menuBtn.addEventListener("click", () => setMenu(!navLinks.classList.contains("open")));
+    $$("#navLinks a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+    window.addEventListener("resize", () => { if (window.innerWidth > 820) setMenu(false); });
+
+    /* ---------- Active nav link on scroll ---------- */
+    const sections = $$("main section");
+    const navMap = {};
+    $$("#navLinks a").forEach(a => navMap[a.getAttribute("href").slice(1)] = a);
+    if ("IntersectionObserver" in window) {
+      const navObs = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            Object.values(navMap).forEach(a => a.classList.remove("active"));
+            const link = navMap[en.target.id];
+            if (link) link.classList.add("active");
+          }
+        });
+      }, { rootMargin: "-40% 0px -55% 0px" });
+      sections.forEach(s => navObs.observe(s));
+    }
+
+    /* ---------- Link buttons (GitHub, project, LinkedIn) ---------- */
+    $$("[data-link]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const url = LINKS[btn.dataset.link];
+        if (url) window.open(url, "_blank", "noopener,noreferrer");
+        else toast("This link isn't added yet. It will be available soon.");
+      });
+    });
+
+    /* ---------- Resume download ---------- */
+    $$("[data-action='resume']").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        try {
+          const res = await fetch(RESUME_FILE, { method: "HEAD" });
+          if (!res.ok) throw new Error("missing");
+          const a = document.createElement("a");
+          a.href = RESUME_FILE;
+          a.download = RESUME_FILE;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        } catch (err) {
+          toast("Resume file isn't uploaded yet. Please check back soon or email me.");
+        }
+      });
+    });
+
+    /* ---------- Hero snapshot ---------- */
+    $("#snapRev").textContent = inr(totalRev);
+    $("#snapGm").textContent = pct(avgGm);
+    $("#snapOm").textContent = pct(om[lastIdx]);
+
+    (function sparkline() {
+      const W = 300, H = 90, p = 8;
+      const min = Math.min(...DATA.revenue) * 0.9, max = Math.max(...DATA.revenue);
+      const pts = DATA.revenue.map((v, i) => [
+        p + (W - 2 * p) * i / (DATA.revenue.length - 1),
+        H - p - (v - min) / (max - min) * (H - 2 * p)
+      ]);
+      const line = pts.map((q, i) => (i ? "L" : "M") + q[0].toFixed(1) + " " + q[1].toFixed(1)).join(" ");
+      const area = line + ` L ${pts[pts.length - 1][0]} ${H} L ${pts[0][0]} ${H} Z`;
+      $("#spark").innerHTML =
+        `<defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+           <stop offset="0" stop-color="#2dd4bf" stop-opacity=".35"/><stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+         </linearGradient></defs>
+         <path d="${area}" fill="url(#sg)"/>
+         <path d="${line}" fill="none" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>` +
+        pts.map(q => `<circle cx="${q[0]}" cy="${q[1]}" r="3.5" fill="#0a1628" stroke="#2dd4bf" stroke-width="2"/>`).join("");
+    })();
+
+    /* ---------- KPI cards ---------- */
+    $("#kpis").innerHTML = [
+      { l: "Total revenue (" + rangeLabel + ")", v: inr(totalRev),       n: "Illustrative" },
+      { l: "Revenue growth, " + DATA.months[0] + " to " + DATA.months[lastIdx], v: "+" + pct(growth), n: "Illustrative" },
+      { l: "Average gross margin", v: pct(avgGm),                        n: "Illustrative" },
+      { l: "Operating margin (" + DATA.months[lastIdx] + ")", v: pct(om[lastIdx]), n: "Illustrative" }
+    ].map(k => `<div class="kpi"><small>${k.l}</small><strong>${k.v}</strong><em>${k.n}</em></div>`).join("");
+
+    /* ---------- Chart: grouped bars ---------- */
+    function barChart(el) {
+      const W = 560, H = 320, m = { l: 44, r: 12, t: 16, b: 36 };
+      const iw = W - m.l - m.r, ih = H - m.t - m.b;
+      const series = [
+        { name: "Revenue",          vals: DATA.revenue, c: "#2dd4bf" },
+        { name: "Gross profit",     vals: gp,           c: "#38bdf8" },
+        { name: "Operating profit", vals: op,           c: "#a78bfa" }
+      ];
+      const max = Math.ceil(Math.max(...DATA.revenue) / 20) * 20;
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grouped bar chart of illustrative monthly revenue, gross profit and operating profit">`;
+      for (let i = 0; i <= 4; i++) {
+        const v = max / 4 * i, y = m.t + ih - v / max * ih;
+        s += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${y}" y2="${y}"/><text x="${m.l - 8}" y="${y + 4}" text-anchor="end">${v}</text>`;
+      }
+      const gw = iw / DATA.months.length;
+      const bw = Math.min(24, (gw - 22) / series.length);
+      DATA.months.forEach((mo, i) => {
+        const gx = m.l + gw * i + (gw - bw * series.length) / 2;
+        series.forEach((se, j) => {
+          const h = se.vals[i] / max * ih;
+          s += `<rect class="bar" style="animation-delay:${(i * series.length + j) * 70}ms" x="${gx + j * bw}" y="${m.t + ih - h}" width="${bw - 3}" height="${h}" rx="3" fill="${se.c}"><title>${mo} ${se.name}: ${inr(se.vals[i])} (illustrative)</title></rect>`;
+        });
+        s += `<text x="${m.l + gw * i + gw / 2}" y="${H - 12}" text-anchor="middle">${mo}</text>`;
+      });
+      s += "</svg>";
+      s += `<div class="legend">${series.map(x => `<span><i style="background:${x.c}"></i>${x.name}</span>`).join("")}</div>`;
+      el.innerHTML = s;
+    }
+
+    /* ---------- Chart: line (margins) ---------- */
+    function lineChart(el) {
+      const W = 800, H = 280, m = { l: 44, r: 20, t: 20, b: 36 };
+      const iw = W - m.l - m.r, ih = H - m.t - m.b;
+      const max = Math.ceil(Math.max(...gm, ...om) / 10) * 10 + 10;
+      const series = [
+        { name: "Gross margin %",     vals: gm, c: "#2dd4bf" },
+        { name: "Operating margin %", vals: om, c: "#a78bfa" }
+      ];
+      const x = i => m.l + iw * i / (DATA.months.length - 1);
+      const y = v => m.t + ih - v / max * ih;
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart of illustrative gross and operating margin by month">`;
+      for (let i = 0; i <= 5; i++) {
+        const v = max / 5 * i;
+        s += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"/><text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${v}%</text>`;
+      }
+      DATA.months.forEach((mo, i) => { s += `<text x="${x(i)}" y="${H - 12}" text-anchor="middle">${mo}</text>`; });
+      series.forEach(se => {
+        const d = se.vals.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
+        s += `<path class="line-path" pathLength="1" d="${d}" fill="none" stroke="${se.c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+        se.vals.forEach((v, i) => {
+          s += `<circle class="dot-pt" cx="${x(i)}" cy="${y(v)}" r="5" fill="#0a1628" stroke="${se.c}" stroke-width="2.5"><title>${DATA.months[i]} ${se.name}: ${v.toFixed(1)}% (illustrative)</title></circle>`;
+          s += `<text class="dot-pt" x="${x(i)}" y="${y(v) - 12}" text-anchor="middle" style="fill:${se.c};font-weight:600">${v.toFixed(1)}%</text>`;
+        });
+      });
+      s += "</svg>";
+      s += `<div class="legend">${series.map(q => `<span><i style="background:${q.c}"></i>${q.name}</span>`).join("")}</div>`;
+      el.innerHTML = s;
+    }
+
+    /* ---------- Chart: donut (category mix) ---------- */
+    function donutChart(el) {
+      const colors = ["#2dd4bf", "#38bdf8", "#a78bfa", "#fbbf24", "#f472b6", "#60a5fa"];
+      const r = 60, C = 2 * Math.PI * r;
+      const total = sum(DATA.categories.map(c => c.pct)) || 1;
+      let offset = 0;
+      let s = `<div class="donut-wrap"><svg viewBox="0 0 170 170" role="img" aria-label="Donut chart of illustrative sales mix by category">
+        <circle cx="85" cy="85" r="${r}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="22"/>`;
+      DATA.categories.forEach((c, i) => {
+        const len = c.pct / total * C;
+        s += `<circle cx="85" cy="85" r="${r}" fill="none" stroke="${colors[i % colors.length]}" stroke-width="22"
+               stroke-dasharray="${len.toFixed(2)} ${(C - len).toFixed(2)}" stroke-dashoffset="${(-offset).toFixed(2)}"
+               transform="rotate(-90 85 85)"><title>${c.name}: ${c.pct}% (illustrative)</title></circle>`;
+        offset += len;
+      });
+      s += `<text x="85" y="82" text-anchor="middle" style="fill:#e6eef7;font-size:20px;font-weight:700">100%</text>
+            <text x="85" y="100" text-anchor="middle" style="font-size:10px">of revenue</text></svg>
+            <div class="donut-legend">${DATA.categories.map((c, i) => `<span><i style="background:${colors[i % colors.length]}"></i>${c.name}<b>${c.pct}%</b></span>`).join("")}</div></div>`;
+      el.innerHTML = s;
+    }
+
+    barChart($("#barChart"));
+    lineChart($("#lineChart"));
+    donutChart($("#donutChart"));
+
+    /* ---------- Reveal on scroll (+ trigger chart animations) ---------- */
+    const revealTargets = $$(".reveal, .chart");
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.15 });
+      revealTargets.forEach(t => io.observe(t));
+    } else {
+      revealTargets.forEach(t => t.classList.add("in"));
+    }
+
+    /* ---------- Contact form (Netlify Forms with email fallback) ---------- */
+    const form = $("#contactForm");
+    const statusEl = $("#formStatus");
+    const sendBtn = $("#sendBtn");
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      sendBtn.disabled = true;
+      statusEl.textContent = "Sending...";
+      const fd = new FormData(form);
+      try {
+        const res = await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(fd).toString()
+        });
+        if (!res.ok) throw new Error("Form endpoint unavailable");
+        form.reset();
+        statusEl.textContent = "Thank you! Your message has been sent.";
+        toast("Message sent. Thank you!");
+      } catch (err) {
+        // Fallback: open the visitor's email app with the message pre-filled
+        const subject = encodeURIComponent("Portfolio enquiry from " + (fd.get("name") || ""));
+        const body = encodeURIComponent((fd.get("message") || "") + "\n\nFrom: " + (fd.get("name") || "") + " (" + (fd.get("email") || "") + ")");
+        statusEl.textContent = "Opening your email app so you can send this directly.";
+        window.location.href = "mailto:Yuvrajgupta372@gmail.com?subject=" + subject + "&body=" + body;
+      } finally {
+        sendBtn.disabled = false;
+      }
+    });
+
+    /* ---------- Footer year ---------- */
+    $("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
