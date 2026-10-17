@@ -794,21 +794,15 @@
 
     /* ---------- Resume download ---------- */
     $$("[data-action='resume']").forEach(btn => {
-      btn.addEventListener("click", async () => {
-        try {
-          const res = await fetch(RESUME_FILE, { method: "HEAD" });
-          if (!res.ok) throw new Error("missing");
-          const a = document.createElement("a");
-          a.href = RESUME_FILE;
-          a.download = RESUME_FILE;
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-        } catch (err) {
-          toast("Resume file isn't uploaded yet. Please check back soon or email me.");
-        }
-      });
-    });
+  btn.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = "Yuvraj%20Gupta%20(3).pdf";
+    a.download = "Yuvraj Gupta (3).pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  });
+});
 
     /* ---------- Hero snapshot ---------- */
     $("#snapRev").textContent = inr(totalRev);
